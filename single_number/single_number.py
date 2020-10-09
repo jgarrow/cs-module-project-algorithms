@@ -2,38 +2,52 @@
 Input: a List of integers where every int except one shows up twice
 Returns: an integer
 '''
-def single_number(arr):
-    # Your code here
-    # loop over arr
-    # hold onto current index value
-    # if nothing else in the arr matches that value, return it
-    # otherwise remove the current index value & its match and loop again
-    # get rid of both the current index value and its match to make the arr shorter so each iteration takes less time
+# doesn't work every time -- sometimes the test passes, sometimes it fails
+# def single_number(arr):
+#     # Your code here
+#     # loop over arr
+#     # hold onto current index value
+#     # if nothing else in the arr matches that value, return it
+#     # otherwise remove the current index value & its match and loop again
+#     # get rid of both the current index value and its match to make the arr shorter so each iteration takes less time
 
-    curr_index = len(arr) - 1
-    while curr_index > 0:
+#     curr_index = len(arr) - 1
+#     while curr_index > 0:
         
-        next_index = curr_index - 1
+#         next_index = curr_index - 1
 
-        while next_index >= 0:
+#         while next_index >= 0:
             
-            # if curr_index and next_index values match, remove both and update the indices
-            if arr[next_index] == arr[curr_index]:
-                arr.pop(curr_index)
-                arr.pop(next_index)
+#             # if curr_index and next_index values match, remove both and update the indices
+#             if arr[next_index] == arr[curr_index]:
+#                 arr.pop(curr_index)
+#                 arr.pop(next_index)
 
-                curr_index = len(arr) - 1
-                next_index = curr_index - 1
+#                 curr_index = len(arr) - 1
+#                 next_index = curr_index - 1
 
-            # if we reached the end of the array and never found a match, curr_index is what we want
-            elif next_index - 1 == 0:
-                return arr[curr_index]
+#             # if we reached the end of the array and never found a match, curr_index is what we want
+#             elif next_index - 1 == 0:
+#                 return arr[curr_index]
 
-            # if they didn't match, update next_index to move onto the next element
-            else: 
-                next_index -= 1
+#             # if they didn't match, update next_index to move onto the next element
+#             else: 
+#                 next_index -= 1
         
-    return arr[0]
+#     return arr[0]
+
+
+
+from collections import defaultdict
+def single_number(arr):
+    hash_table = defaultdict(int)
+
+    for num in arr:
+        hash_table[num] += 1
+    
+    for key in hash_table:
+        if hash_table[key] == 1:
+            return key
             
 
 
